@@ -1,5 +1,69 @@
-.container{
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+    overflow: hidden;
     max-width: 1400px;
-    background-color: wheat;
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.header__title {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.header__button {
+    display: flex;
+    align-items: center;
+    background-color: #e3ecf2;
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.headerButtonText {
+    padding: 0 30px;
+}
+
+.doneTasks {
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.taskWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.taskList {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px; // расстояние между карточками
+    transition: transform 0.5s ease-in-out;
+}
+
+.taskItem {
+    min-width: 300px; // ширина карточки
+    opacity: 0.6;
+    transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.activeTask {
+    opacity: 1;
+    transform: scale(1.05);
 }

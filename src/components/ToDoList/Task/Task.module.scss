@@ -1,3 +1,84 @@
 .container{
-    width: 18rem;
+    background-color: #f4f8fb;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 20px;
+    margin: 50px;
+    height: 25vw;
+}
+
+.cardImgTop{
+    border-radius: 10%;
+    width: 100%;
+}
+
+.cardBody{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardTitle{
+    font-size: large;
+    margin: 10px;
+}
+
+.cardText{
+    overflow: auto;
+    max-height: 100px;
+    padding-right: 5px;
+}
+
+.btn{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: aquamarine;
+    min-width: 60%;
+}
+
+.addTaskCard{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addTaskCardHeader{}
+
+.addTaskListGroup{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.addTaskListGroupItem{
+    text-decoration: none;
+}
+
+.taskType{
+    border: 1px solid black;
+    border-radius: 10px;
+    color: burlywood;
+    background-color: rgb(161, 139, 98);
+}
+
+.btnGroup{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
