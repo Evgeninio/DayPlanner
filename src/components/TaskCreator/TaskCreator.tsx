@@ -2,6 +2,7 @@ import { useState } from "react"
 import styles from "./TaskCreator.module.scss"
 import Tasks from "../data/MockData"
 import { TasksTypes } from "../data/MockData"
+import { Link } from "react-router-dom"
 
 const TaskCreator = () => {
     const [task, setTask] = useState({
@@ -16,8 +17,8 @@ const TaskCreator = () => {
         setTask((prev) => ({
             ...prev,
             [id]: value,
-        }));
-    };
+        }))
+    }
 
     const handleAddTask = () => {
         setTask((prev) => ({
@@ -54,7 +55,14 @@ const TaskCreator = () => {
     }
     console.log(Tasks)
     return (
+        <>
         <form className={styles.form} onSubmit={handleSubmit}>
+        <header className={styles.headerContainer}>
+            <p className={styles.headerTitle}>Task creator</p>
+            <Link to="/" className={`${styles.header__button} ${location.pathname === "/" ? styles.active : ""}`}>
+                <p className={styles.headerButtonText}>Home</p>
+            </Link>
+        </header>
             <div className={styles.container}>
             <div className={styles.formGroup}>
                 <label htmlFor="name">Task</label>
@@ -78,7 +86,7 @@ const TaskCreator = () => {
                 />
             </div>
             <div className={styles.formGroup}>
-                <label htmlFor="exampleFormControlSelect1">Example select</label>
+                <label id='type'>Example select</label>
                 <select 
                 className={styles.formControl} 
                 onChange={handleTaskChange}
@@ -114,6 +122,7 @@ const TaskCreator = () => {
             </button>
             </div>
         </form>
+        </>
     )
 }
 

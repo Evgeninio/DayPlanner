@@ -15,7 +15,7 @@ const Header = () => {
             {/* <Link to="/progress" className={`${styles.headerButton} ${location.pathname === "/progress" ? styles.active : ""}`}>
                 <p className={styles.headerText}>Прогресс</p>
             </Link> */}
-            <Link to="/tasks" className={`${styles.headerButton} ${location.pathname === "/habbits" ? styles.active : ""}`}>
+            <Link to="/habbits" className={`${styles.headerButton} ${location.pathname === "/habbits" ? styles.active : ""}`}>
                 <p className={styles.headerText}>Habbits</p>
             </Link>
             <Link to="/tasks" className={`${styles.headerButton} ${location.pathname === "/stats" ? styles.active : ""}`}>

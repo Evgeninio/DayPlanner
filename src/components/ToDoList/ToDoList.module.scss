@@ -13,7 +13,6 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
-
 }
 
 .header__title {
@@ -24,11 +23,20 @@
 .header__button {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: #e3ecf2;
     text-decoration: none;
+    width: 20%;
     color: black;
     margin: 20px;
     border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+}
+
+.header__button:hover {
+    background-color: #d2dbe2;
+    transform: translateY(-4px);
 }
 
 .headerButtonText {
@@ -36,14 +44,47 @@
 }
 
 .doneTasks {
-    margin-bottom: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+  width: 90%;
+}
+
+.mainDoneTasks,
+.addDoneTasks {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.mainDoneTasks:hover,
+.addDoneTasks:hover {
+  transform: translateY(-4px);
+}
+
+.mainDoneTasks p,
+.addDoneTasks p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.progressBarWrapper {
+  width: 100%;
+  height: 10px;
+  background: #e6e6f0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }
 
 .taskWrapper {
+    flex: 1;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -53,17 +94,29 @@
 .taskList {
     display: flex;
     flex-wrap: nowrap;
-    gap: 20px; // расстояние между карточками
+    gap: 20px;
     transition: transform 0.5s ease-in-out;
 }
 
 .taskItem {
-    min-width: 300px; // ширина карточки
+    min-width: 300px;
     opacity: 0.6;
     transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.exitLeft {
+  transform: translateX(-150%) !important;
+  opacity: 0;
 }
 
 .activeTask {
     opacity: 1;
     transform: scale(1.05);
 }
+
+.noTasks {
+    text-align: center;
+    font-size: 1.5em;
+    color: #666;
+}
+

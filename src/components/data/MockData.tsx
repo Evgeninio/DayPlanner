@@ -103,4 +103,38 @@ const Tasks = [
   },
 ];
 
+
+
+export const HabbitsData = 
+[
+    {
+      id: 1,
+      title: "Drink Water",
+      goal: 7,
+      progress: 5,
+      unit: "times/week"
+    },
+    {
+      id: 2,
+      title: "Read Book",
+      goal: 7,
+      progress: 3,
+      unit: "times/week"
+    },
+    {
+      id: 3,
+      title: "Exercise",
+      goal: 7,
+      progress: 2,
+      unit: "times/week"
+    },
+    {
+      id: 4,
+      title: "Morning Jog",
+      goal: 7,
+      progress: 4,
+      unit: "times/week"
+    }
+  ]
+
 export default Tasks

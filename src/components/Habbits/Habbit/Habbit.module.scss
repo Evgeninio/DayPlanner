@@ -1,0 +1,115 @@
+.container {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(24, 21, 51, 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(24, 21, 51, 0.12);
+  }
+}
+
+.habbitHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.incrementBtn {
+  background: linear-gradient(90deg, #9b8bff, #c88bff);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    box-shadow: 0 6px 14px rgba(155, 139, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #dcdcdc;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 24px;
+  width: min(420px, 90%);
+  box-shadow: 0 14px 32px rgba(24, 21, 51, 0.18);
+  animation: fadeIn 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  @supports (backdrop-filter: blur(14px)) {
+    backdrop-filter: blur(14px);
+  }
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #222;
+  }
+}
+
+.closeBtn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    color: #000;
+  }
+}
+
+.popupBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 16px;
+  color: #333;
+}

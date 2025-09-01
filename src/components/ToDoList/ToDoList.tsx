@@ -3,6 +3,19 @@ import Tasks from '../data/MockData'
 import Task from './Task/Task'
 import { useState, useRef, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ProgressBar from './ProggressBar/ProgressBar'
+
+type SubTask = {
+  id: number
+  name: string
+}
+
+type Task = {
+    name: string
+    description: string
+    type: string
+    addTasks: SubTask[]
+}
 
 const ToDoList = () => {
     const [currIndex, setCurrIndex] = useState(0)
@@ -11,29 +24,33 @@ const ToDoList = () => {
     const [cardWidth, setCardWidth] = useState(0)
     const taskItemRef = useRef<HTMLDivElement>(null)
     const taskListRef = useRef<HTMLDivElement>(null)
+    const amountAddTasks = (tasks: Task[]) => {
+    return tasks.reduce((acc, task) => acc + task.addTasks.length, 0)
+    }
 
-    const hasTasks = currIndex < Tasks.length 
+    const amount = amountAddTasks(Tasks)
+    const hasTasks = currIndex < Tasks.length
 
     const handleNextTask = (isCompleted: boolean) => {
         if (isCompleted) {
-            setCountMainTasks((prev) => prev + 1);
+            setCountMainTasks((prev) => prev + 1)
         }
 
-        setCurrIndex((prevIndex) => (prevIndex < Tasks.length ? prevIndex + 1 : prevIndex));
-    };
+        setCurrIndex((prevIndex) => prevIndex + 1)
+    }
 
     useLayoutEffect(() => {
         if (taskItemRef.current) {
-            setCardWidth(taskItemRef.current.offsetWidth);
+            setCardWidth(taskItemRef.current.offsetWidth)
         }
-    }, []);
+    }, [])
 
     const calculateTranslateX = () => {
-        const gap = 20; // Ширина gap между карточками
-        if (!taskListRef.current || !taskItemRef.current) return 0;
-        const containerWidth = taskListRef.current.offsetWidth;
-        return -(currIndex * (cardWidth + gap)) + (containerWidth - cardWidth) / 2;
-    };
+        const gap = 20
+        if (!taskListRef.current || !taskItemRef.current) return 0
+        const containerWidth = taskListRef.current.offsetWidth
+        return -(currIndex * (cardWidth + gap)) + (containerWidth - cardWidth) / 2
+    }
 
     return (
         <section className={styles.container}>
@@ -44,33 +61,51 @@ const ToDoList = () => {
                 </Link>
             </header>
             <div className={styles.doneTasks}>
-                <p>Completed tasks: {countMainTasks}</p>
-                <p>Completed add tasks: {countAddTasks}</p>
+                <div className={styles.mainDoneTasks}>
+                    <p>Main Tasks</p>
+                    <div className={styles.progressBarWrapper}>
+                        <ProgressBar value={countMainTasks} tasksLength={Tasks.length} />
+                    </div>
+                </div>
+                <div className={styles.addDoneTasks}>
+                    <p>Additional Tasks</p> 
+                    <div className={styles.progressBarWrapper}>
+                        <ProgressBar value={countAddTasks} tasksLength={amount} />
+                    </div>
+                </div>
             </div>
             <div className={styles.taskWrapper}>
-            <div
-                className={styles.taskList} ref={taskListRef}
-                style={{ transform: `translateX(${calculateTranslateX()}px)` }} // Используем динамический расчет
-            >
-                
-                {hasTasks? (Tasks.map((item, index) => {
-                return(          
-                    <div key={index} className={`${styles.taskItem} ${index === currIndex ? styles.activeTask : ''}`} ref={taskItemRef}>
-                        <Task
-                            title={item.name}
-                            description={item.description}
-                            addTasks={item.addTasks}
-                            onDoneTask={() => handleNextTask(true)}
-                            onSkipTask={() => handleNextTask(false)}
-                            countAddTasks={setCountAddTasks}
-                            taskType={item.type}
-                        />
+                {hasTasks ? (
+                    <div
+                        className={styles.taskList}
+                        ref={taskListRef}
+                        style={{ transform: `translateX(${calculateTranslateX()}px)` }}
+                    >
+                        {Tasks.map((item, index) => (
+                            <div
+                                key={index}
+                                className={`${styles.taskItem} ${index === currIndex ? styles.activeTask : ''}`}
+                                ref={index === currIndex ? taskItemRef : null}
+                            >
+                                <Task
+                                    title={item.name}
+                                    description={item.description}
+                                    addTasks={item.addTasks}
+                                    onDoneTask={() => handleNextTask(true)}
+                                    onSkipTask={() => handleNextTask(false)}
+                                    countAddTasks={(delta) => setCountAddTasks(prev => prev + delta)}
+                                    taskType={item.type}
+                                    disabled={index !== currIndex}
+                                />
+                            </div>
+                        ))}
                     </div>
-                )})): <p style={{ transform: `translateX(calc(50%)` }}>У вас закончились задания</p>}
+                ) : (
+                    <p className={styles.noTasks}>У вас закончились задания</p>
+                )}
             </div>
-        </div>
         </section>
     )
 }
 
-export default ToDoList;
+export default ToDoList
